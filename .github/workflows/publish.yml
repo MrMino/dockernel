@@ -1,0 +1,26 @@
+name: 📦 Build and 🐍 publish to PyPI
+on:
+    push:
+        tags:
+            - 'v*'
+
+
+jobs:
+    Deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-python@v2
+              with:
+                  python-version: 3.8
+            - name: Install setuptoos, twine, wheel, newest pip
+              run: |
+                python -m pip install --upgrade pip
+                pip install setuptools wheel twine
+            - name: 📦 Build
+              run: python setup.py sdist bdist_wheel
+            - name: 📦→🐍 Publish
+              env:
+                TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+                TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+              run: twine upload --non-interactive --verbose dist/*
