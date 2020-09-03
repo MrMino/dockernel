@@ -3,6 +3,11 @@ import json
 import pytest
 
 
+def test_InterruptMode_has_proper_values():
+    for mode in InterruptMode:
+        assert mode.name == mode.value
+
+
 class TestKernelspec:
     def test_kernelspec(self):
         data_given = {
@@ -35,8 +40,3 @@ class TestKernelspec:
             'argv': [], 'language': '', 'display_name': '',
         }
         Kernelspec(**only_mandatory_args)
-
-
-def test_InterruptMode_has_proper_values():
-    for mode in InterruptMode:
-        assert mode.name == mode.value
