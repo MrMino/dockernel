@@ -51,6 +51,7 @@ class Kernelspec:
         return json.dumps(self._spec)
 
 
+# TODO: make sure windows path is expanded properly
 def user_kernelspec_store(system_type: str) -> Path:
     """Return path to the place where user's kernelspecs are stored on given OS.
 
