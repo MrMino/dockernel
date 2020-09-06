@@ -12,4 +12,9 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Changed
 - Nothing yet
 
-[unreleased]: https://github.com/mrmino/twine-verify-upload/compare/v1.1.0...HEAD
+## [1.0.0] - 2020-07-09
+### Added
+- First working version of `dockernel install` and `dockernel start`.
+
+[unreleased]: https://github.com/mrmino/dockernel/v1.0.0...HEAD
+[1.0.0]: https://github.com/mrmino/dockernel/releases/tag/v1.0.0
