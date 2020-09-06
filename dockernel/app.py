@@ -1,7 +1,7 @@
 from typing import List
-from .cli import main_arguments
+from .cli import main_arguments, run_subcommand
 
 
 def run(argv: List) -> int:
-    main_arguments.parse_args(argv[1:])
-    return 0
+    parsed_args = main_arguments.parse_args(argv[1:])
+    return run_subcommand(parsed_args)
