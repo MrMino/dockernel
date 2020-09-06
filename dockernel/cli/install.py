@@ -65,5 +65,8 @@ def install(args: Namespace) -> int:
     location = kernelspec_dir(store_path, kernel_id)
     install_kernelspec(location, kernelspec)
 
+    # TODO: bare numbered exit statusses seem bad
+    return 0
+
 
 set_subcommand_func(parser=arguments, func=install)
