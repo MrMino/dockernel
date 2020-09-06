@@ -83,7 +83,7 @@ def user_kernelspec_store(system_type: str) -> Path:
     else:
         raise ValueError(f'unknown system type: {system_type}')
 
-    return Path(kernelspec_dir_path)
+    return Path(kernelspec_dir_path).expanduser()
 
 
 def kernelspec_dir(kernelspec_store: Path, kernel_id: str) -> Path:

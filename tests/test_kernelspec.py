@@ -88,6 +88,11 @@ class TestKernelspecStoreDir:
         with pytest.raises(ValueError):
             user_kernelspec_store('unknown system type')
 
+    def test_linux_path_starts_with_users_home(self):
+        path = str(user_kernelspec_store('Linux'))
+        home_path = str(Path.home())
+        assert path.startswith(home_path)
+
 
 class TestKernelspecDir:
     def test_kernel_id_is_dir_name(self):
