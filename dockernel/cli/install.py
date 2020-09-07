@@ -3,7 +3,7 @@ import docker
 from typing import List
 from argparse import Namespace
 from .main import subparsers, set_subcommand_func
-from ..kernelspec import (Kernelspec, user_kernelspec_store,
+from ..kernelspec import (Kernelspec, InterruptMode, user_kernelspec_store,
                           ensure_kernelspec_store_exists, kernelspec_dir,
                           install_kernelspec)
 
@@ -58,7 +58,8 @@ def install(args: Namespace) -> int:
     display_name = args.image_name if args.name is None else args.name
     language = args.language
 
-    kernelspec = Kernelspec(argv, display_name, language)
+    kernelspec = Kernelspec(argv, display_name, language,
+                            interrupt_mode=InterruptMode.message)
 
     docker_client = docker.from_env()
     kernel_id = image_digest(docker_client, args.image_name)
