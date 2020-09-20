@@ -6,7 +6,7 @@ from pathlib import Path
 
 arguments = subparsers.add_parser(
     __name__.split('.')[-1],
-    help="Start a dockernel"
+    help="Start a dockernel."
 )
 
 # TODO: add a note about how to pull / build an image
