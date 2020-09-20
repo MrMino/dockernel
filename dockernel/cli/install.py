@@ -48,9 +48,9 @@ def python_argv(system_type: str) -> List[str]:
 
 
 def generate_kernelspec_argv(image_name: str, system_type: str) -> List[str]:
-    dockernel_cmd = ['dockernel', 'start',
+    dockernel_argv = ['dockernel', 'start',
                      image_name, JUPYTER_CONNECTION_FILE_TEMPLATE]
-    return python_argv(system_type) + dockernel_cmd
+    return python_argv(system_type) + dockernel_argv
 
 
 def image_digest(docker_client: docker.client.DockerClient,
