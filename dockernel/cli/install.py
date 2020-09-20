@@ -36,11 +36,21 @@ arguments.add_argument(
 JUPYTER_CONNECTION_FILE_TEMPLATE = '{connection_file}'
 
 
-def generate_kernelspec_argv(image_name: str) -> List[str]:
-    python_cmd = ['/usr/bin/env', 'python', '-m']
+def python_argv(system_type: str) -> List[str]:
+    """Return proper command-line vector for python interpreter"""
+    if system_type == "Linux" or system_type == "Darwin":
+        argv = ['/usr/bin/env', 'python', '-m']
+    elif system_type == "Windows":
+        argv = ['python', '-m']
+    else:
+        raise ValueError(f'unknown system type: {system_type}')
+    return argv
+
+
+def generate_kernelspec_argv(image_name: str, system_type: str) -> List[str]:
     dockernel_cmd = ['dockernel', 'start',
                      image_name, JUPYTER_CONNECTION_FILE_TEMPLATE]
-    return python_cmd + dockernel_cmd
+    return python_argv(system_type) + dockernel_cmd
 
 
 def image_digest(docker_client: docker.client.DockerClient,
@@ -54,7 +64,7 @@ def install(args: Namespace) -> int:
     store_path = user_kernelspec_store(system_type)
     ensure_kernelspec_store_exists(store_path)
 
-    argv = generate_kernelspec_argv(args.image_name)
+    argv = generate_kernelspec_argv(args.image_name, system_type)
     display_name = args.image_name if args.name is None else args.name
     language = args.language
 

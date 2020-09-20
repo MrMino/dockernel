@@ -17,6 +17,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   subcommand.
 - (Windows) Fixed wrong kernelspec directory path being used with "dockernel
   install".
+- (Windows) Fixed kernelspecs using `/usr/bin/env python` instead of just
+  `python`.
 
 ## [1.0.0] - 2020-07-09
 ### Added
