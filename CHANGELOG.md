@@ -17,6 +17,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Default interrupt mode will now be set to "message" when installing a kernel.
   This helps with container stopping unexpectedly or not closing after shutting
   the notebook.
+- (Windows) Fixed wrong kernelspec directory path being used with "dockernel
+  install".
 
 ## [1.0.0] - 2020-07-09
 ### Added
