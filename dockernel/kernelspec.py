@@ -7,6 +7,7 @@ jupyter will look for kernelspec dirs.
 """
 import json
 import string
+import os
 from typing import List, Dict, Optional
 from enum import Enum
 from pathlib import Path
@@ -78,7 +79,7 @@ def user_kernelspec_store(system_type: str) -> Path:
     if system_type == "Linux":
         kernelspec_dir_path = "~/.local/share/jupyter/kernels"
     elif system_type == "Windows":
-        kernelspec_dir_path = r"%APPDATA%\jupyter\kernels"
+        kernelspec_dir_path = os.getenv("APPDATA") + r"\jupyter\kernels"
     elif system_type == "Darwin":
         kernelspec_dir_path = "~/Library/Jupyter/kernels"
     else:
