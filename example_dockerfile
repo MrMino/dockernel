@@ -1,0 +1,4 @@
+FROM mnp5g-docker-virtual.esisoj70.emea.nsn-net.net/python:3.7-slim-buster
+
+RUN pip install --upgrade pip ipython ipykernel
+CMD cat $DOCKERNEL_CONNECTION_FILE; python -m ipykernel_launcher -f $DOCKERNEL_CONNECTION_FILE || true
