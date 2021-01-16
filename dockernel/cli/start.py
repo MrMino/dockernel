@@ -1,8 +1,10 @@
-import docker
-from .main import subparsers, set_subcommand_func
+import json
 from argparse import Namespace
 from pathlib import Path
 
+import docker
+
+from .main import subparsers, set_subcommand_func
 
 arguments = subparsers.add_parser(
     __name__.split('.')[-1],
@@ -29,10 +31,23 @@ CONTAINER_CONNECTION_SPEC_PATH = '/kernel-connection-spec.json'
 CONTAINER_CONNECTION_SPEC_ENV_VAR = 'DOCKERNEL_CONNECTION_FILE'
 
 
+def set_connection_ip(connection_file: Path, ip: str = '0.0.0.0'):
+    """ Set/update ip field in connection file """
+
+    connection = json.loads(connection_file.read_text())
+    connection['ip'] = ip
+    connection_file.write_text(json.dumps(connection))
+
+    return connection
+
+
 def start(parsed_args: Namespace) -> int:
     containers = docker.from_env().containers
     image_name = parsed_args.image_name
     connection_file = Path(parsed_args.connection_file)
+
+    connection = set_connection_ip(connection_file, '0.0.0.0')
+    port_mapping = {connection[k]: connection[k] for k in connection if "_port" in k}
 
     # TODO: parametrize connection spec file bind path
     connection_file_mount = docker.types.Mount(
@@ -49,7 +64,6 @@ def start(parsed_args: Namespace) -> int:
         CONTAINER_CONNECTION_SPEC_ENV_VAR: CONTAINER_CONNECTION_SPEC_PATH
     }
 
-    # TODO: network_mode shouldn't be "host", expose necessary ports only
     # TODO: parametrize possible mounts
     # TODO: log stdout and stderr
     # TODO: use detached=True?
@@ -58,7 +72,8 @@ def start(parsed_args: Namespace) -> int:
         auto_remove=True,
         environment=env_vars,
         mounts=[connection_file_mount],
-        network_mode='host',
+        network_mode='bridge',
+        ports=port_mapping,
         stdout=True,
         stderr=True
     )
