@@ -33,6 +33,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - First working version of `dockernel install` and `dockernel start`.
 
 [unreleased]: https://github.com/mrmino/dockernel/v1.0.2...HEAD
-[1.0.1]: https://github.com/mrmino/dockernel/releases/tag/v1.0.2
+[1.0.2]: https://github.com/mrmino/dockernel/releases/tag/v1.0.2
 [1.0.1]: https://github.com/mrmino/dockernel/releases/tag/v1.0.1
 [1.0.0]: https://github.com/mrmino/dockernel/releases/tag/v1.0.0
