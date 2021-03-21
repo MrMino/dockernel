@@ -10,6 +10,10 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Nothing yet
 
 ### Changed
+- Nothing yet
+
+## [1.0.2] - 2021-03-21
+### Changed
 - Fixed `AttributeError` when "dockernel" command was used without any
   subcommand.
 - (Windows) Fixed wrong kernelspec directory path being used with "dockernel
@@ -28,6 +32,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Added
 - First working version of `dockernel install` and `dockernel start`.
 
-[unreleased]: https://github.com/mrmino/dockernel/v1.0.0...HEAD
+[unreleased]: https://github.com/mrmino/dockernel/v1.0.2...HEAD
+[1.0.1]: https://github.com/mrmino/dockernel/releases/tag/v1.0.2
 [1.0.1]: https://github.com/mrmino/dockernel/releases/tag/v1.0.1
 [1.0.0]: https://github.com/mrmino/dockernel/releases/tag/v1.0.0
