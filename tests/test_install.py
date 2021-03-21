@@ -4,12 +4,13 @@ from dockernel.cli.install import generate_kernelspec_argv, image_digest
 from dockernel.cli import main_arguments
 
 
-class TestKernelspecArgvGeneration:
+# TODO Add tests for Darwin and Windows
+class TestLinuxKernelspecArgvGeneration:
     IMAGE_NAME = 'example/image-name'
 
     @pytest.fixture
     def argv(self):
-        return generate_kernelspec_argv(self.IMAGE_NAME)
+        return generate_kernelspec_argv(self.IMAGE_NAME, 'Linux')
 
     def test_argv_starts_with_usr_bin_env_python_m(self, argv):
         assert argv[:3] == ['/usr/bin/env', 'python', '-m']
