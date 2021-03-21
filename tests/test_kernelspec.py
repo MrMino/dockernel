@@ -1,3 +1,4 @@
+import os
 import pytest
 import json
 from dockernel.kernelspec import (Kernelspec, InterruptMode,
@@ -5,6 +6,16 @@ from dockernel.kernelspec import (Kernelspec, InterruptMode,
                                   ensure_kernelspec_store_exists,
                                   install_kernelspec)
 from pathlib import Path
+
+
+@pytest.yield_fixture
+def environment_variables():
+    starting_state = os.environ.copy()
+
+    yield os.environ
+
+    os.environ.clear()
+    os.environ.update(starting_state)
 
 
 @pytest.fixture
@@ -81,7 +92,10 @@ class TestEnsureKernelspecStoreExists:
 
 class TestKernelspecStoreDir:
     @pytest.mark.parametrize('system_type', ('Linux', 'Windows', 'Darwin'))
-    def test_works_for_supported_platforms(self, system_type):
+    def test_works_for_supported_platforms(self, system_type,
+                                           environment_variables):
+        if system_type == 'Windows':
+            environment_variables['APPDATA'] = ''
         user_kernelspec_store(system_type)
 
     def test_raises_TypeError_on_unknown_system(self):
