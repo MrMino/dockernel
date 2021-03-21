@@ -1,3 +1,6 @@
+# Jupyter notebooks
+*.ipynb
+
 # sshd files for running local sshd tests
 sshd_config
 ssh_host_*
