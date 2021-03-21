@@ -1,3 +1,6 @@
+# Jupyter notebooks
+*.ipynb
+
 # sshd files for running local sshd tests
 sshd_config
 ssh_host_*
@@ -68,6 +71,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+pip-wheel-metadata
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
