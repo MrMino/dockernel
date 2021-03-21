@@ -28,8 +28,10 @@ To build your image, use `docker build`. E.g. to build the example mentioned
 above:
 
 ```
-sudo docker build --tag my_kernel - < example_dockerfile
+docker build --tag my_kernel - < example_dockerfile
 ```
+
+_*Note*: Use `sudo` if you run into permission errors._
 
 After that, use Dockernel to install the docker image as a Jupyter kernel:
 
