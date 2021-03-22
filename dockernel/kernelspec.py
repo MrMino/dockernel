@@ -182,4 +182,4 @@ def add_dockernel_versionfile(kernelspec_dir: Path) -> None:
         Path object to the store where the kernel should be installed.
     """
     versionfile_path = kernelspec_dir/DOCKERNEL_VERSIONFILE_FILENAME
-    versionfile_path.write_text(dockernel_version)
+    versionfile_path.write_text(dockernel_version + '\n')
