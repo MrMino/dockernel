@@ -27,9 +27,35 @@ If you run into permission errors with `docker` or `dockernel` - either use
 user](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
 guide._
 
+### Creating a Dockernel image
+
 First, create a docker image that will host your kernel. This will require a
-proper dockerfile. An example can be seen
+proper dockerfile. A full example for IPython kernel can be seen
 [here](https://github.com/MrMino/dockernel/blob/master/example_dockerfile).
+
+Most kernels take a path to a "connection file" (also called "control file" by
+some kernels) as a CLI argument. This file contains all of the information
+necessary to start up a kernel, including TCP ports to use, IP address, etc.
+
+When running your container, Dockernel will supply this file and put it into a
+predefined path in the container. This path will be given via an environment
+variable visible in the container as `$DOCKERNEL_CONNECTION_FILE`.
+
+Therefore, in order for the kernel to know the connection settings it should
+use, you need to pass the contents of this variable in `CMD` of the container.
+For example, for IPython kernel:
+
+```
+CMD python -m ipykernel_launcher -f $DOCKERNEL_CONNECTION_FILE
+```
+
+Or for the Rust kernel (Evcxr, see the
+[example Rust
+dockerfile](https://github.com/MrMino/dockernel/blob/master/example_dockerfile)):
+
+```
+CMD evcxr_jupyter --control_file $DOCKERNEL_CONNECTION_FILE
+```
 
 To build your image, use `docker build`. E.g. to build the example mentioned
 above:
@@ -38,6 +64,7 @@ above:
 docker build --tag my_kernel - < example_dockerfile
 ```
 
+### Installing your image as a Jupyter Kernel
 
 After that, use Dockernel to install the docker image as a Jupyter kernel:
 
