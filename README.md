@@ -20,12 +20,12 @@ different one.
 
 ## Usage
 
-_Note for Linux users:
+*Note for Linux users:
 
 If you run into permission errors with `docker` or `dockernel` - either use
 `sudo`, or follow the steps outlined in [Manage Docker as a non-root
 user](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
-guide._
+guide.*
 
 ### Creating a Dockernel image
 
