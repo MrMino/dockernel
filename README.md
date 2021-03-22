@@ -20,6 +20,13 @@ different one.
 
 ## Usage
 
+_Note for Linux users:
+
+If you run into permission errors with `docker` or `dockernel` - either use
+`sudo`, or follow the steps outlined in [Manage Docker as a non-root
+user](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
+guide._
+
 First, create a docker image that will host your kernel. This will require a
 proper dockerfile. An example can be seen
 [here](https://github.com/MrMino/dockernel/blob/master/example_dockerfile).
@@ -31,7 +38,6 @@ above:
 docker build --tag my_kernel - < example_dockerfile
 ```
 
-_*Note*: Use `sudo` if you run into permission errors._
 
 After that, use Dockernel to install the docker image as a Jupyter kernel:
 
