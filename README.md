@@ -51,7 +51,7 @@ CMD python -m ipykernel_launcher -f $DOCKERNEL_CONNECTION_FILE
 
 Or for the Rust kernel (Evcxr, see the
 [example Rust
-dockerfile](https://github.com/MrMino/dockernel/blob/master/example_dockerfile)):
+dockerfile](https://github.com/MrMino/dockernel/blob/master/example_rust_dockerfile)):
 
 ```
 CMD evcxr_jupyter --control_file $DOCKERNEL_CONNECTION_FILE
