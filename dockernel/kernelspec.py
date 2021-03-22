@@ -12,9 +12,12 @@ from typing import List, Dict, Optional
 from enum import Enum
 from pathlib import Path
 
+from .version import version as dockernel_version
+
 
 KERNELSPEC_FILENAME = 'kernel.json'
 KERNELSPEC_STORE_DIRNAME = 'kernels'
+DOCKERNEL_VERSIONFILE_FILENAME = 'DOCKERNEL'
 
 
 class InterruptMode(str, Enum):
@@ -165,3 +168,18 @@ def install_kernelspec(kernelspec_dir: Path, kernelspec: Kernelspec) -> None:
     kernelspec_dir.mkdir()
     kernelspec_file = kernelspec_dir/KERNELSPEC_FILENAME
     kernelspec_file.write_text(kernelspec.json())
+    add_dockernel_versionfile(kernelspec_dir)
+
+
+def add_dockernel_versionfile(kernelspec_dir: Path) -> None:
+    """Generate DOCKERNEL file under the specified path.
+
+    Creates a text file with the current version of dockernel package
+
+    Parameters
+    ----------
+    kernelspec_dir
+        Path object to the store where the kernel should be installed.
+    """
+    versionfile_path = kernelspec_dir/DOCKERNEL_VERSIONFILE_FILENAME
+    versionfile_path.write_text(dockernel_version)
